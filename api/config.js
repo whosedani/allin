@@ -1,12 +1,12 @@
 import { Redis } from '@upstash/redis';
 
 const redis = new Redis({
-  url: process.env.KV_REST_API_URL || process.env.ALLIN_UPSTASH_URL,
-  token: process.env.KV_REST_API_TOKEN || process.env.ALLIN_UPSTASH_TOKEN,
+  url: process.env.ALLIN_UPSTASH_URL,
+  token: process.env.ALLIN_UPSTASH_TOKEN,
 });
 
 const REDIS_KEY = 'allin-config';
-const ADMIN_HASH = process.env.ADMIN_HASH || process.env.ALLIN_ADMIN_HASH;
+const ADMIN_HASH = process.env.ALLIN_ADMIN_HASH;
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');

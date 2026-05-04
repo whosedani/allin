@@ -157,21 +157,6 @@
     </div>
 
     <div class="field">
-      <label>Elon Tweet URL</label>
-      <input type="text" id="elonTweetUrl" placeholder="https://x.com/elonmusk/status/...">
-    </div>
-
-    <div class="field">
-      <label>Buffett Tweet URL</label>
-      <input type="text" id="buffettTweetUrl" placeholder="https://x.com/cryptorover/status/...">
-    </div>
-
-    <div class="field">
-      <label>Trending URL</label>
-      <input type="text" id="trendingUrl" placeholder="https://x.com/i/trending/...">
-    </div>
-
-    <div class="field">
       <label>Password</label>
       <input type="password" id="password" placeholder="Admin password">
     </div>
@@ -202,10 +187,7 @@
         ca: document.getElementById('ca').value,
         twitterUrl: document.getElementById('twitterUrl').value,
         communityUrl: document.getElementById('communityUrl').value,
-        buyUrl: document.getElementById('buyUrl').value,
-        elonTweetUrl: document.getElementById('elonTweetUrl').value,
-        buffettTweetUrl: document.getElementById('buffettTweetUrl').value,
-        trendingUrl: document.getElementById('trendingUrl').value
+        buyUrl: document.getElementById('buyUrl').value
       };
 
       try {
@@ -231,9 +213,6 @@
           if (data.twitterUrl) document.getElementById('twitterUrl').value = data.twitterUrl;
           if (data.communityUrl) document.getElementById('communityUrl').value = data.communityUrl;
           if (data.buyUrl) document.getElementById('buyUrl').value = data.buyUrl;
-          if (data.elonTweetUrl) document.getElementById('elonTweetUrl').value = data.elonTweetUrl;
-          if (data.buffettTweetUrl) document.getElementById('buffettTweetUrl').value = data.buffettTweetUrl;
-          if (data.trendingUrl) document.getElementById('trendingUrl').value = data.trendingUrl;
         }
       } catch (e) {}
     }
