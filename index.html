@@ -6,6 +6,34 @@
   <title>$ALLIN — All In</title>
   <meta name="description" content="Elon went all in on $10T. Buffett called it a gambler's market. The cat just pushed his chips forward. $ALLIN on Solana.">
   <link rel="icon" type="image/x-icon" href="./static/favicon.ico">
+
+  <!-- preload critical assets -->
+  <link rel="preload" as="image" href="./static/hero-bg.gif" fetchpriority="high">
+  <link rel="preload" as="image" href="./static/cat-small.png">
+
+  <!-- twitter preconnects (start TLS handshake early) -->
+  <link rel="preconnect" href="https://platform.twitter.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.syndication.twimg.com" crossorigin>
+  <link rel="dns-prefetch" href="https://platform.twitter.com">
+  <link rel="dns-prefetch" href="https://cdn.syndication.twimg.com">
+  <link rel="dns-prefetch" href="https://abs.twimg.com">
+  <link rel="dns-prefetch" href="https://pbs.twimg.com">
+
+  <!-- start widgets.js loading asap -->
+  <script>
+    window.twttr = (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      js.async = true;
+      fjs.parentNode.insertBefore(js, fjs);
+      t._e = []; t.ready = function (f) { t._e.push(f); };
+      return t;
+    }(document, "script", "twitter-wjs"));
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Overpass+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -58,7 +86,7 @@
 
   <!-- I — HERO -->
   <section class="hero" id="hero">
-    <div class="hero-bg" style="background-image: url('./static/hero-bg.gif');"></div>
+    <img src="./static/hero-bg.gif" alt="" class="hero-bg-img" decoding="async" fetchpriority="high">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1 class="hero-title">ALL IN</h1>
@@ -209,18 +237,6 @@
     </button>
   </footer>
 
-  <script>
-    window.twttr = (function (d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {};
-      if (d.getElementById(id)) return t;
-      js = d.createElement(s); js.id = id;
-      js.src = "https://platform.twitter.com/widgets.js";
-      fjs.parentNode.insertBefore(js, fjs);
-      t._e = []; t.ready = function (f) { t._e.push(f); };
-      return t;
-    }(document, "script", "twitter-wjs"));
-  </script>
   <script src="./script.js"></script>
 </body>
 </html>
