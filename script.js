@@ -104,17 +104,68 @@
   function renderTweet(wrapId, tweetUrl) {
     var wrap = document.getElementById(wrapId);
     if (!wrap || !tweetUrl) return;
+
+    // Strip query params (e.g. ?s=20) — they break some embeds
+    var cleanUrl = tweetUrl.split('?')[0];
+
     var bq = document.createElement('blockquote');
     bq.className = 'twitter-tweet';
     bq.setAttribute('data-theme', 'dark');
+    bq.setAttribute('data-dnt', 'true');
     var a = document.createElement('a');
-    a.href = tweetUrl;
+    a.href = cleanUrl;
+    a.textContent = 'View on X';
+    a.target = '_blank';
+    a.rel = 'noopener';
     bq.appendChild(a);
+
     wrap.innerHTML = '';
     wrap.appendChild(bq);
-    if (window.twttr && window.twttr.widgets) {
-      window.twttr.widgets.load(wrap);
+    wrap.classList.add('tweet-loading');
+
+    var rendered = false;
+
+    function doLoad() {
+      if (window.twttr && window.twttr.widgets && window.twttr.widgets.load) {
+        var p = window.twttr.widgets.load(wrap);
+        if (p && p.then) {
+          p.then(function () {
+            rendered = true;
+            wrap.classList.remove('tweet-loading');
+          });
+        } else {
+          rendered = true;
+          wrap.classList.remove('tweet-loading');
+        }
+      }
     }
+
+    if (window.twttr && window.twttr.ready) {
+      window.twttr.ready(doLoad);
+    } else {
+      var tries = 0;
+      var interval = setInterval(function () {
+        tries++;
+        if (window.twttr && window.twttr.widgets) {
+          clearInterval(interval);
+          doLoad();
+        } else if (tries > 40) {
+          clearInterval(interval);
+        }
+      }, 200);
+    }
+
+    // Fallback after 9s — show plain link card if embed failed
+    setTimeout(function () {
+      if (rendered) return;
+      if (wrap.querySelector('iframe')) {
+        rendered = true;
+        wrap.classList.remove('tweet-loading');
+        return;
+      }
+      wrap.classList.remove('tweet-loading');
+      wrap.innerHTML = '<a class="tweet-fallback-link" href="' + cleanUrl + '" target="_blank" rel="noopener">View tweet on X →</a>';
+    }, 9000);
   }
 
   // ---------- LOAD CONFIG ----------

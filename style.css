@@ -510,11 +510,43 @@ img {
   margin-top: 32px;
   border-radius: 12px;
   border: 1px solid var(--border-gold);
-  overflow: hidden;
   background: var(--felt-dark);
   box-shadow: 0 8px 36px rgba(0, 0, 0, 0.4), 0 0 24px rgba(255, 212, 59, 0.05);
+  min-height: 60px;
+  position: relative;
 }
 .tweet-wrap .twitter-tweet { margin: 0 auto !important; }
+.tweet-wrap.tweet-loading {
+  min-height: 220px;
+}
+.tweet-wrap.tweet-loading::before {
+  content: 'loading tweet...';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--felt-grey);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.tweet-wrap a.tweet-fallback-link {
+  display: block;
+  padding: 36px 24px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--chip-gold);
+  text-transform: uppercase;
+  transition: background 0.25s, color 0.25s;
+}
+.tweet-wrap a.tweet-fallback-link:hover {
+  background: rgba(255, 212, 59, 0.06);
+  color: var(--smoke-white);
+}
 .tweet-fallback {
   width: 100%;
   height: auto;
