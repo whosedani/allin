@@ -12,9 +12,9 @@
     twitterUrl: 'https://x.com',
     communityUrl: 'https://x.com',
     buyUrl: 'https://pump.fun',
-    elonTweetUrl: '',
-    buffettTweetUrl: '',
-    trendingUrl: 'https://x.com/i/trending/2051053180'
+    elonTweetUrl: 'https://x.com/elonmusk/status/2051022381976781173',
+    buffettTweetUrl: 'https://x.com/cryptorover/status/2051241172354425024',
+    trendingUrl: 'https://x.com/i/trending/2051053180490850746'
   };
 
   function applyConfig(cfg) {
@@ -41,8 +41,8 @@
     });
 
     // Tweet embeds
-    if (cfg.elonTweetUrl) renderTweet('elonTweetWrap', cfg.elonTweetUrl);
-    if (cfg.buffettTweetUrl) renderTweet('buffettTweetWrap', cfg.buffettTweetUrl);
+    renderTweet('elonTweetWrap', cfg.elonTweetUrl || DEFAULTS.elonTweetUrl);
+    renderTweet('buffettTweetWrap', cfg.buffettTweetUrl || DEFAULTS.buffettTweetUrl);
   }
 
   function formatCa(ca) {
