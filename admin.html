@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>$ALLIN — Admin</title>
+  <link rel="icon" type="image/x-icon" href="./static/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Plus+Jakarta+Sans:wght@400;600&family=Overpass+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --felt-dark: #0A120A;
+      --baize: #142014;
+      --chip-gold: #FFD43B;
+      --neon-magenta: #FF2D8A;
+      --smoke-white: #EDE9E3;
+      --felt-grey: #5A6B5A;
+      --border: rgba(255, 212, 59, 0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--felt-dark);
+      color: var(--smoke-white);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .admin {
+      max-width: 480px;
+      width: 100%;
+      background: var(--baize);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 40px rgba(255, 212, 59, 0.05);
+    }
+
+    .admin-title {
+      font-family: 'Righteous', cursive;
+      font-size: 1.6rem;
+      color: var(--chip-gold);
+      letter-spacing: 3px;
+      text-align: center;
+      margin-bottom: 0.4rem;
+      text-shadow: 0 0 14px rgba(255, 212, 59, 0.35);
+    }
+    .admin-sub {
+      text-align: center;
+      font-family: 'Overpass Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--felt-grey);
+      letter-spacing: 2px;
+      margin-bottom: 1.6rem;
+      text-transform: uppercase;
+    }
+
+    .field {
+      margin-bottom: 1rem;
+    }
+
+    .field label {
+      display: block;
+      font-family: 'Overpass Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--felt-grey);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .field input {
+      width: 100%;
+      background: var(--felt-dark);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.7rem 0.9rem;
+      color: var(--smoke-white);
+      font-family: 'Overpass Mono', monospace;
+      font-size: 0.8rem;
+      outline: none;
+      transition: border-color 0.25s;
+    }
+
+    .field input:focus {
+      border-color: var(--chip-gold);
+    }
+
+    .field input::placeholder {
+      color: var(--felt-grey);
+    }
+
+    .btn-save {
+      width: 100%;
+      margin-top: 1rem;
+      background: var(--chip-gold);
+      color: var(--felt-dark);
+      font-family: 'Righteous', cursive;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px;
+      border-radius: 0;
+      border: none;
+      cursor: pointer;
+      transition: filter 0.25s, box-shadow 0.25s;
+    }
+
+    .btn-save:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 0 24px rgba(255, 212, 59, 0.4);
+    }
+
+    .status {
+      text-align: center;
+      margin-top: 1rem;
+      font-family: 'Overpass Mono', monospace;
+      font-size: 0.75rem;
+      min-height: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .status.success { color: #2EC85F; }
+    .status.error { color: var(--neon-magenta); }
+  </style>
+</head>
+<body>
+  <div class="admin">
+    <div class="admin-title">ALL IN</div>
+    <div class="admin-sub">dealer's panel</div>
+
+    <div class="field">
+      <label>Contract Address</label>
+      <input type="text" id="ca" placeholder="Paste CA...">
+    </div>
+
+    <div class="field">
+      <label>Twitter / X URL</label>
+      <input type="text" id="twitterUrl" placeholder="https://x.com/...">
+    </div>
+
+    <div class="field">
+      <label>Community URL</label>
+      <input type="text" id="communityUrl" placeholder="https://x.com/i/communities/...">
+    </div>
+
+    <div class="field">
+      <label>Buy URL</label>
+      <input type="text" id="buyUrl" placeholder="https://pump.fun/...">
+    </div>
+
+    <div class="field">
+      <label>Elon Tweet URL</label>
+      <input type="text" id="elonTweetUrl" placeholder="https://x.com/elonmusk/status/...">
+    </div>
+
+    <div class="field">
+      <label>Buffett Tweet URL</label>
+      <input type="text" id="buffettTweetUrl" placeholder="https://x.com/cryptorover/status/...">
+    </div>
+
+    <div class="field">
+      <label>Trending URL</label>
+      <input type="text" id="trendingUrl" placeholder="https://x.com/i/trending/...">
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="password" placeholder="Admin password">
+    </div>
+
+    <button class="btn-save" onclick="saveConfig()">Save Config</button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <script>
+    function showStatus(msg, type) {
+      var el = document.getElementById('status');
+      el.textContent = msg;
+      el.className = 'status ' + type;
+      setTimeout(function () { el.textContent = ''; el.className = 'status'; }, 3000);
+    }
+
+    async function saveConfig() {
+      var password = document.getElementById('password').value;
+      if (!password) { showStatus('enter password', 'error'); return; }
+
+      var encoder = new TextEncoder();
+      var hashBuffer = await crypto.subtle.digest('SHA-256', encoder.encode(password));
+      var hashArray = Array.from(new Uint8Array(hashBuffer));
+      var passwordHash = hashArray.map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+
+      var configData = {
+        passwordHash: passwordHash,
+        ca: document.getElementById('ca').value,
+        twitterUrl: document.getElementById('twitterUrl').value,
+        communityUrl: document.getElementById('communityUrl').value,
+        buyUrl: document.getElementById('buyUrl').value,
+        elonTweetUrl: document.getElementById('elonTweetUrl').value,
+        buffettTweetUrl: document.getElementById('buffettTweetUrl').value,
+        trendingUrl: document.getElementById('trendingUrl').value
+      };
+
+      try {
+        var res = await fetch('/api/config', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(configData)
+        });
+        if (res.ok) showStatus('saved. chips stacked.', 'success');
+        else if (res.status === 401) showStatus('wrong password', 'error');
+        else showStatus('failed to save', 'error');
+      } catch (e) {
+        showStatus('connection error', 'error');
+      }
+    }
+
+    async function loadConfig() {
+      try {
+        var res = await fetch('/api/config');
+        if (res.ok) {
+          var data = await res.json();
+          if (data.ca) document.getElementById('ca').value = data.ca;
+          if (data.twitterUrl) document.getElementById('twitterUrl').value = data.twitterUrl;
+          if (data.communityUrl) document.getElementById('communityUrl').value = data.communityUrl;
+          if (data.buyUrl) document.getElementById('buyUrl').value = data.buyUrl;
+          if (data.elonTweetUrl) document.getElementById('elonTweetUrl').value = data.elonTweetUrl;
+          if (data.buffettTweetUrl) document.getElementById('buffettTweetUrl').value = data.buffettTweetUrl;
+          if (data.trendingUrl) document.getElementById('trendingUrl').value = data.trendingUrl;
+        }
+      } catch (e) {}
+    }
+
+    document.addEventListener('DOMContentLoaded', loadConfig);
+  </script>
+</body>
+</html>

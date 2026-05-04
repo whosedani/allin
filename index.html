@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>$ALLIN — All In</title>
+  <meta name="description" content="Elon went all in on $10T. Buffett called it a gambler's market. The cat just pushed his chips forward. $ALLIN on Solana.">
+  <link rel="icon" type="image/x-icon" href="./static/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Overpass+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- SMOKE LAYER -->
+  <div class="smoke-layer" aria-hidden="true">
+    <div class="smoke smoke-1"></div>
+    <div class="smoke smoke-2"></div>
+    <div class="smoke smoke-3"></div>
+    <div class="smoke smoke-4"></div>
+  </div>
+
+  <!-- CHIP PARTICLES -->
+  <div class="chips-layer" id="chipsLayer" aria-hidden="true"></div>
+
+  <!-- SCANLINES -->
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">ALL IN</a>
+      <button class="nav-ca" id="navCa" title="Click to copy CA">
+        <span id="caText">CA: coming soon</span>
+      </button>
+      <div class="nav-actions">
+        <a href="#" id="navTwitter" class="nav-icon" target="_blank" rel="noopener" title="X / Twitter">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="#" id="navCommunity" class="nav-icon" target="_blank" rel="noopener" title="Community">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </a>
+        <a href="#" id="navBuy" class="nav-buy" target="_blank" rel="noopener">buy</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- I — HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" style="background-image: url('./static/hero-bg.png');"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">ALL IN</h1>
+      <div class="hero-cat-wrap">
+        <img src="./static/cat.png" alt="The Cat" class="hero-cat">
+      </div>
+      <p class="hero-tagline">
+        Elon wants $10T or bust. Buffett says it's a gambler's market. We say: <span class="hero-tagline-accent">all in.</span>
+      </p>
+      <div class="hero-cta">
+        <a href="#" id="heroBuy" class="btn-primary" target="_blank" rel="noopener">buy $ALLIN</a>
+        <a href="https://x.com/i/trending/2051053180" id="heroTrending" class="btn-secondary" target="_blank" rel="noopener">🔥 #1 Trending</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- II — THE SIGNAL -->
+  <section class="section section-signal">
+    <div class="section-inner">
+      <div class="kicker kicker-magenta reveal">THE SIGNAL</div>
+      <h2 class="section-title reveal">Elon Went <span class="accent-gold">All In.</span></h2>
+      <p class="section-lede reveal">
+        "$10 trillion or bust." Not $1T. Not "let's see." Ten trillion. Or nothing. That's not a business strategy — that's a poker hand. That's pushing every chip to the center of the table and staring the universe in the eye.
+      </p>
+      <div class="tweet-wrap reveal" id="elonTweetWrap">
+        <img src="./static/tweet-elon.png" alt="Elon tweet" class="tweet-fallback">
+      </div>
+      <p class="section-foot reveal">"when the richest man on earth goes all in, you pay attention."</p>
+    </div>
+  </section>
+
+  <!-- III — THE CONFIRMATION -->
+  <section class="section section-confirmation">
+    <div class="section-inner">
+      <div class="kicker kicker-blue reveal">THE CONFIRMATION</div>
+      <h2 class="section-title reveal">Buffett Called It a <span class="accent-gold">Gambler's Market.</span></h2>
+      <p class="section-lede reveal">
+        Warren Buffett — the man who spent 60 years preaching patience, value, and fundamentals — just called today's market a casino. When the Oracle of Omaha says the gamblers are running the show, you don't argue. You buy chips.
+      </p>
+      <div class="tweet-wrap reveal" id="buffettTweetWrap">
+        <img src="./static/tweet-buffett.png" alt="Buffett tweet" class="tweet-fallback">
+      </div>
+      <p class="section-foot reveal">"the oracle confirmed what we already knew. it's a gambler's world. we're just all in in it."</p>
+    </div>
+  </section>
+
+  <!-- IV — THE LORE -->
+  <section class="section section-lore">
+    <div class="section-inner">
+      <div class="kicker kicker-magenta reveal">THE LORE</div>
+      <h2 class="section-title reveal">Why <span class="accent-gold">All In</span>?</h2>
+
+      <div class="lore-block reveal">
+        <div class="lore-num">01</div>
+        <div class="lore-content">
+          <div class="lore-head">THE TWEET</div>
+          <p>Elon posts "$10T or bust." Not a hedge. Not a strategy meeting. A declaration. X explodes. #AllIn starts trending within hours. The narrative writes itself.</p>
+        </div>
+      </div>
+
+      <div class="lore-block reveal">
+        <div class="lore-num">02</div>
+        <div class="lore-content">
+          <div class="lore-head">THE ORACLE</div>
+          <p>Hours later, Warren Buffett's video surfaces: "this is a gambler's market now." The man who never gambled is admitting the table has changed. When Buffett calls it a casino — the casino wins.</p>
+        </div>
+      </div>
+
+      <div class="lore-block reveal">
+        <div class="lore-num">03</div>
+        <div class="lore-content">
+          <div class="lore-head">THE CAT</div>
+          <p>And then there's the cat. Sitting at the table. Chips stacked. Cigar lit. He doesn't need to explain himself. He already pushed everything to the center. He's been all in since the beginning. He was all in before it was trending. He IS all in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- V — GALLERY (THE TABLE) -->
+  <section class="section section-gallery">
+    <div class="section-inner">
+      <div class="kicker kicker-gold reveal">THE TABLE</div>
+      <h2 class="section-title reveal">Meet the Cat.</h2>
+      <div class="gallery">
+        <div class="gallery-item reveal" style="--d:0"><img src="./static/gallery/1.png" alt=""></div>
+        <div class="gallery-item reveal" style="--d:1"><img src="./static/gallery/2.png" alt=""></div>
+        <div class="gallery-item reveal" style="--d:2"><img src="./static/gallery/3.png" alt=""></div>
+        <div class="gallery-item reveal" style="--d:3"><img src="./static/gallery/4.png" alt=""></div>
+        <div class="gallery-item reveal" style="--d:4"><img src="./static/gallery/5.png" alt=""></div>
+        <div class="gallery-item reveal" style="--d:5"><img src="./static/gallery/6.png" alt=""></div>
+        <div class="gallery-item reveal" style="--d:6"><img src="./static/gallery/7.png" alt=""></div>
+        <div class="gallery-item reveal" style="--d:7"><img src="./static/gallery/8.png" alt=""></div>
+        <div class="gallery-item reveal" style="--d:8"><img src="./static/gallery/9.png" alt=""></div>
+        <div class="gallery-item reveal" style="--d:9"><img src="./static/gallery/10.png" alt=""></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VI — THE ODDS -->
+  <section class="section section-odds">
+    <div class="section-inner">
+      <div class="kicker kicker-magenta reveal">THE ODDS</div>
+      <h2 class="section-title reveal">The House Always Wins. Be the House.</h2>
+      <div class="odds-grid">
+        <div class="odd-card reveal">
+          <div class="odd-num">$10T</div>
+          <div class="odd-label">Elon's target. all or nothing.</div>
+        </div>
+        <div class="odd-card reveal">
+          <div class="odd-num">#1</div>
+          <div class="odd-label">trending on X. worldwide.</div>
+        </div>
+        <div class="odd-card reveal">
+          <div class="odd-num">∞</div>
+          <div class="odd-label">chips on the table. no limits.</div>
+        </div>
+        <div class="odd-card reveal">
+          <div class="odd-num">0</div>
+          <div class="odd-label">fucks given. we're all in.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VII — BIG QUOTE -->
+  <section class="section section-quote">
+    <div class="section-inner">
+      <h2 class="big-quote reveal">
+        ELON SAID $10T OR BUST. BUFFETT SAID IT'S A GAMBLER'S MARKET. THE CAT SAID NOTHING. HE JUST <span class="accent-gold-glow">PUSHED HIS CHIPS FORWARD.</span>
+      </h2>
+    </div>
+  </section>
+
+  <!-- VIII — TAKE A SEAT -->
+  <section class="section section-seat">
+    <div class="section-inner">
+      <div class="kicker kicker-gold reveal">TAKE A SEAT</div>
+      <h2 class="section-title reveal">Sit Down. Stack Up.</h2>
+
+      <div class="seat-step reveal">
+        <div class="chip chip-blue"><span>I</span></div>
+        <div class="seat-text"><strong>Get Phantom.</strong> Your seat at the table.</div>
+      </div>
+      <div class="seat-step reveal">
+        <div class="chip chip-magenta"><span>II</span></div>
+        <div class="seat-text"><strong>Buy SOL.</strong> Stack your chips.</div>
+      </div>
+      <div class="seat-step reveal">
+        <div class="chip chip-gold"><span>III</span></div>
+        <div class="seat-text"><strong>Swap for $ALLIN</strong> on pump.fun. You're in the hand.</div>
+      </div>
+      <div class="seat-step reveal">
+        <div class="chip chip-green"><span>IV</span></div>
+        <div class="seat-text"><strong>Hold.</strong> The cat doesn't fold. Neither do you.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IX — MARQUEE -->
+  <section class="marquee">
+    <div class="marquee-track">
+      <span>ALL IN 🎰 $10T OR BUST 🃏 GAMBLER'S MARKET 🎲 ALL IN 🎰 THE CAT DOESN'T FOLD 🃏 TRENDING #1 🎲 ALL IN 🎰</span>
+      <span>ALL IN 🎰 $10T OR BUST 🃏 GAMBLER'S MARKET 🎲 ALL IN 🎰 THE CAT DOESN'T FOLD 🃏 TRENDING #1 🎲 ALL IN 🎰</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <img src="./static/cat-small.png" alt="" class="footer-cat">
+    <div class="footer-tag">all in. on-chain.</div>
+    <button class="footer-ca" id="footerCa" title="Click to copy CA">
+      <span id="caTextFooter">CA: coming soon</span>
+    </button>
+  </footer>
+
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <script src="./script.js"></script>
+</body>
+</html>

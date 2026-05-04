@@ -1,0 +1,10 @@
+{
+  "name": "allin",
+  "version": "1.0.0",
+  "description": "$ALLIN — Elon went $10T or bust. Buffett called it a gambler's market. The cat just pushed his chips forward.",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@upstash/redis": "^1.34.0"
+  }
+}
