@@ -101,71 +101,81 @@
 
   // ---------- TWEET EMBED ----------
 
+  function extractTweetId(url) {
+    if (!url) return null;
+    var m = url.match(/status(?:es)?\/(\d+)/);
+    return m ? m[1] : null;
+  }
+
   function renderTweet(wrapId, tweetUrl) {
     var wrap = document.getElementById(wrapId);
     if (!wrap || !tweetUrl) return;
 
-    // Strip query params (e.g. ?s=20) — they break some embeds
     var cleanUrl = tweetUrl.split('?')[0];
-
-    var bq = document.createElement('blockquote');
-    bq.className = 'twitter-tweet';
-    bq.setAttribute('data-theme', 'dark');
-    bq.setAttribute('data-dnt', 'true');
-    var a = document.createElement('a');
-    a.href = cleanUrl;
-    a.textContent = 'View on X';
-    a.target = '_blank';
-    a.rel = 'noopener';
-    bq.appendChild(a);
+    var tweetId = extractTweetId(cleanUrl);
+    if (!tweetId) return;
 
     wrap.innerHTML = '';
-    wrap.appendChild(bq);
     wrap.classList.add('tweet-loading');
 
-    var rendered = false;
-
-    function doLoad() {
-      if (window.twttr && window.twttr.widgets && window.twttr.widgets.load) {
-        var p = window.twttr.widgets.load(wrap);
-        if (p && p.then) {
-          p.then(function () {
-            rendered = true;
-            wrap.classList.remove('tweet-loading');
-          });
-        } else {
-          rendered = true;
-          wrap.classList.remove('tweet-loading');
-        }
-      }
-    }
-
-    if (window.twttr && window.twttr.ready) {
-      window.twttr.ready(doLoad);
-    } else {
-      var tries = 0;
-      var interval = setInterval(function () {
-        tries++;
-        if (window.twttr && window.twttr.widgets) {
-          clearInterval(interval);
-          doLoad();
-        } else if (tries > 40) {
-          clearInterval(interval);
-        }
-      }, 200);
-    }
-
-    // Fallback after 9s — show plain link card if embed failed
-    setTimeout(function () {
-      if (rendered) return;
-      if (wrap.querySelector('iframe')) {
-        rendered = true;
-        wrap.classList.remove('tweet-loading');
-        return;
-      }
+    var done = false;
+    function showFallback() {
+      if (done) return;
+      done = true;
       wrap.classList.remove('tweet-loading');
       wrap.innerHTML = '<a class="tweet-fallback-link" href="' + cleanUrl + '" target="_blank" rel="noopener">View tweet on X →</a>';
-    }, 9000);
+    }
+    function markDone() {
+      done = true;
+      wrap.classList.remove('tweet-loading');
+    }
+
+    function create() {
+      try {
+        var p = window.twttr.widgets.createTweet(tweetId, wrap, {
+          theme: 'dark',
+          dnt: true,
+          align: 'center',
+          conversation: 'none'
+        });
+        if (p && p.then) {
+          p.then(function (el) {
+            if (el) markDone();
+            else showFallback();
+          }).catch(showFallback);
+        }
+      } catch (e) {
+        showFallback();
+      }
+    }
+
+    function whenReady() {
+      if (window.twttr && window.twttr.widgets && window.twttr.widgets.createTweet) {
+        create();
+      } else if (window.twttr && window.twttr.ready) {
+        window.twttr.ready(create);
+      } else {
+        // poll briefly until script attaches
+        var tries = 0;
+        var iv = setInterval(function () {
+          tries++;
+          if (window.twttr && window.twttr.widgets && window.twttr.widgets.createTweet) {
+            clearInterval(iv);
+            create();
+          } else if (tries > 60) {
+            clearInterval(iv);
+            showFallback();
+          }
+        }, 200);
+      }
+    }
+
+    whenReady();
+
+    // Hard timeout
+    setTimeout(function () {
+      if (!done) showFallback();
+    }, 12000);
   }
 
   // ---------- LOAD CONFIG ----------
